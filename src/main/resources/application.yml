@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: Mmn5xziSZ4CXWSkB
+    url: jdbc:mysql://111.229.169.56:3306/cloudecomputing
+    username: cloudecomputing
