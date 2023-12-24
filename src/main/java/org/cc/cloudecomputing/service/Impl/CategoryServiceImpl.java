@@ -3,6 +3,7 @@ package org.cc.cloudecomputing.service.Impl;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.cc.cloudecomputing.dao.CategoryDao;
+import org.cc.cloudecomputing.dao.GoodDao;
 import org.cc.cloudecomputing.entity.Category;
 import org.cc.cloudecomputing.service.CategoryService;
 import org.cc.cloudecomputing.util.Result;
@@ -13,6 +14,9 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
     @Resource
     private CategoryDao categoryDao;
+    @Resource
+    private GoodDao goodDao;
+
     @Override
     public Result<?> getCategories() {
         return Result.success(categoryDao.findAll());

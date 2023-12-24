@@ -3,6 +3,7 @@ package org.cc.cloudecomputing.service.Impl;
 import jakarta.annotation.Resource;
 import org.cc.cloudecomputing.dao.CategoryDao;
 import org.cc.cloudecomputing.dao.GoodDao;
+import org.cc.cloudecomputing.dao.OrdersDao;
 import org.cc.cloudecomputing.dto.GoodDTO;
 import org.cc.cloudecomputing.entity.Category;
 import org.cc.cloudecomputing.entity.Good;
@@ -19,6 +20,8 @@ public class GoodServiceImpl implements GoodService {
     private GoodDao goodDao;
     @Resource
     private CategoryDao categoryDao;
+    @Resource
+    private OrdersDao ordersDao;
     @Override
     public Result<?> addGood(String name, Integer uid, Integer sales, Integer stockpile, BigDecimal price, String img, String main,String detail) {
         if (goodDao.findByName(name) != null) {
@@ -98,5 +101,14 @@ public class GoodServiceImpl implements GoodService {
         }
         goodDao.delete(good);
         return Result.success("Delete good successfully");
+    }
+
+    @Override
+    public Result<?> getGoodsSails(String name) {
+        Good good=goodDao.findByName(name);
+        if(good==null){
+            return Result.error(400, "Good does not exist");
+        }
+        return Result.success("Get good sails successfully",good.getSales());
     }
 }

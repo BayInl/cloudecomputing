@@ -2,6 +2,8 @@ package org.cc.cloudecomputing.service;
 
 import org.cc.cloudecomputing.dto.GoodDTO;
 import org.cc.cloudecomputing.util.Result;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 
@@ -13,4 +15,5 @@ public interface GoodService {
     Result<?>getGoodsByMainAndDetail(String main, String detail);
     Result<?>getAllGoods();
     Result<?>deleteGood(String name);
+    Result<?>getGoodsSails(String name);
 }

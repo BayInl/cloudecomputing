@@ -36,4 +36,8 @@ public class GoodController {
     public Result<?> deleteGood(@RequestParam String name){
         return goodService.deleteGood(name);
     }
+    @GetMapping("/sails")
+    Result<?> getGoodsSails(@RequestParam String name){
+        return goodService.getGoodsSails(name);
+    }
 }

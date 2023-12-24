@@ -53,6 +53,7 @@ public class OrdersImpl implements OrdersService {
         if(orderss==null|| orderss.isEmpty()){
             Orders orders = new Orders(uid, name, date, quantity);
             orders=ordersDao.save(orders);
+            good.setSales(good.getSales()+quantity);
             good.setStockpile(good.getStockpile()-quantity);
             goodDao.save(good);
             System.out.println(orders);
