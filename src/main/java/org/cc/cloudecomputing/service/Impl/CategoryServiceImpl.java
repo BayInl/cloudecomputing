@@ -1,6 +1,7 @@
 package org.cc.cloudecomputing.service.Impl;
 
 import jakarta.annotation.Resource;
+import jakarta.transaction.Transactional;
 import org.cc.cloudecomputing.dao.CategoryDao;
 import org.cc.cloudecomputing.entity.Category;
 import org.cc.cloudecomputing.service.CategoryService;
@@ -41,16 +42,33 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Result<?> getSubCategories(String MainCategory) {
-        return null;
+        List<Category> subCategories = categoryDao.findAllByMain(MainCategory);
+        if(subCategories==null||subCategories.isEmpty()){
+            return Result.error(404,"No sub category");
+        }
+        return Result.success("get sub category success",subCategories.stream().map(Category::getDetail).toList());
     }
 
     @Override
     public Result<?> deleteCategory(String MainCategory, String SubCategory) {
-        return null;
+        Category category = categoryDao.findByMainAndDetail(MainCategory, SubCategory);
+        if (category == null) {
+            return Result.error(404, "Category not found");
+        }
+        categoryDao.delete(category);
+        return Result.success("delete category success");
     }
 
     @Override
+    @Transactional
     public Result<?> updateCategory(String MainCategory, String SubCategory, String newMainCategory, String newSubCategory) {
-        return null;
+        Category category = categoryDao.findByMainAndDetail(MainCategory, SubCategory);
+        if (category == null) {
+            return Result.error(404, "Category not found");
+        }
+        category.setMain(newMainCategory);
+        category.setDetail(newSubCategory);
+        categoryDao.save(category);
+        return Result.success("update category success");
     }
 }

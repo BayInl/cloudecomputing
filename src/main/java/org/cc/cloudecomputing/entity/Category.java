@@ -14,13 +14,13 @@ import jakarta.persistence.Id;
 public class Category {
     @Id
     @Column(name = "main")
-    private String Main;
+    private String main;
     @Id
     @Column(name = "detail")
-    private String Detail;
+    private String detail;
     public Category() {}
     public Category(String main, String detail) {
-        this.Main = main;
-        this.Detail = detail;
+        this.main = main;
+        this.detail = detail;
     }
 }

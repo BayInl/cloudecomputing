@@ -11,6 +11,7 @@ public interface CategoryService {
 
     Result<?> deleteCategory(String MainCategory, String SubCategory);
 
+    @Deprecated
     Result<?> updateCategory(String MainCategory, String SubCategory, String newMainCategory, String newSubCategory);
 
 }
